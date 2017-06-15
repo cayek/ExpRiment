@@ -5,7 +5,7 @@
 ##' @return an object of class method
 ##' @author cayek
 ##' @export
-method <- function(...)
+ExpRmethod <- function(...)
 {
   res <- list(...)
   class(res) <- c("ExpRmethod", "ExpRoperand")

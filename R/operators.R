@@ -66,7 +66,7 @@ param <- function(...)
 
 #' *MOULINE*
 #'
-#' Run the algorithm of an ExpRoperand
+#' Run the algorithm
 #'
 #' @export
 ExpRmouline <- function(...){

@@ -1,0 +1,4 @@
+* ExpeRiment
+  A R package to run batch experiment.
+** Example of use
+** How to install

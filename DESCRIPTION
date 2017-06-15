@@ -1,6 +1,6 @@
-Package: MatrixFactorizationR
+Package: ExpRiment
 Type: Package
-Title: Matrix Factorization Algorithm
+Title: R package to Run Batch Experiment
 Version: 0.0
 Date: 2017-06-14
 Author: Kevin Caye
@@ -15,7 +15,9 @@ Suggests:
     testthat
 Imports:
     Rcpp (>= 0.12.3),
-    RcppEigen (>= 0.3.2.8.1)
+    RcppEigen (>= 0.3.2.8.1),
+    tibble,
+    foreach
 LinkingTo: Rcpp, RcppEigen
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1.9000
