@@ -37,7 +37,7 @@ ExpR <- function(rep.nb, samplers, preprocessors, methods, extractor) {
 ExpRmouline.ExpR <- function(expr) {
 
   ## sample
-
+  message("=== Sampling data.")
   dats <- list()
   dats <-
     foreach(sampler = expr$samplers, .combine = 'c') %dopar%
@@ -54,11 +54,13 @@ ExpRmouline.ExpR <- function(expr) {
   ## preprocess
 
   ## main loop
+  message("=== Main loop.")
   expr$df.res <-
-    foreach(d = dats, m = expr$methods, .combine = 'rbind') %dopar%
+    foreach(m = methods, .combine = 'rbind') %:%
+    foreach(d = dats, .combine = 'rbind') %dopar%
     {
-      method <- ExpRmouline(m, d)
-      expr$extractor(d, m)
+      m <- ExpRmouline(m, d)
+      return(expr$extractor(d, m))
     }
 
   ## return

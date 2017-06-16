@@ -14,13 +14,8 @@ Depends:
 Suggests:
     testthat
 Imports:
-    Rcpp (>= 0.12.3),
-    RcppEigen (>= 0.3.2.8.1),
-    tibble,
     foreach
-LinkingTo: Rcpp, RcppEigen
-VignetteBuilder: knitr
 RoxygenNote: 6.0.1.9000
 Roxygen: list(markdown = TRUE)
 URL: 
-BugReports: https://github.com/cayek/MatrixFactorization/issues
+BugReports: https://github.com/cayek/ExpRiment/issues

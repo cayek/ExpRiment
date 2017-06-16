@@ -1,4 +1,4 @@
 library(testthat)
-library(MatrixFactorizationR)
+library(ExpRiment)
 
-test_check("MatrixFactorizationR")
+test_check("ExpRiment")
