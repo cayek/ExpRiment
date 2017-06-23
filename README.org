@@ -85,5 +85,5 @@
 ** How to install
    #+begin_src R :results output :exports both
    # install.packages("devtools")
-   devtools::install_github("BioShock38/TESS3_encho_sen")
+   devtools::install_github("cayek/ExpRiment")
    #+end_src
