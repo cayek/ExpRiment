@@ -2,6 +2,7 @@
 
 S3method("*",ExpRoperand)
 S3method("+",ExpRlistOperand)
+S3method(ExpRmouline,ExpR)
 export(ExpR)
 export(ExpRdata)
 export(ExpRmethod)

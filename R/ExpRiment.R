@@ -34,6 +34,7 @@ ExpR <- function(rep.nb, samplers, preprocessors, methods, extractor) {
 ##' @param expr an ExpR class object.
 ##' @return a tidy tibble with wanted information.
 ##' @author cayek
+##' @export
 ExpRmouline.ExpR <- function(expr) {
 
   ## sample
