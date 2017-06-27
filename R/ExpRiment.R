@@ -46,7 +46,6 @@ ExpRmouline.ExpR <- function(expr) {
       aux <- list()
       for (i in 1:(expr$rep.nb)) {
         dat <- ExpRmouline(sampler)
-        dat$i <- i
         aux[[i]] <- dat
       }
       return(aux)
