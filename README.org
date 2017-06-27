@@ -44,7 +44,7 @@
 
      ## extractor
      extract_B <- function(dat, m) {
-       df <- tibble::tibble(i = dat$i, K = dat$K,
+       df <- tibble::tibble(K = dat$K,
                             lambda = m$lambda,
                             B = as.numeric(m$B[,1]),
                             index = 1:ncol(dat$Y))
@@ -54,7 +54,7 @@
 
      ## plot
      plot_res <- function(df.res) {
-       ggplot(df.res, aes(x = B, fill = as.factor(i))) +
+       ggplot(df.res, aes(x = B, fill = as.factor(lambda))) +
          geom_histogram(position = "dodge") +
          facet_grid(K ~ lambda)
      }
