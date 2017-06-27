@@ -4,7 +4,7 @@
 \alias{ExpR}
 \title{Main class}
 \usage{
-ExpR(rep.nb, samplers, preprocessors, methods, extractor)
+ExpR(rep.nb.sampler, samplers, preprocessors, rep.nb.method, methods, extractor)
 }
 \arguments{
 \item{samplers}{list of sampler}

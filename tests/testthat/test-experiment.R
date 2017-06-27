@@ -39,18 +39,20 @@ ExpRmouline.sampler_gaussian <- function(s) {
 }
 
 ## extractor
-extract_B <- function(dat, m) {
-  df <- tibble::tibble(i = dat$i, K = dat$K,
-                 lambda = m$lambda,
-                 B = as.numeric(m$B[,1]),
-                 index = 1:ncol(dat$Y))
+extract_B <- function(dat, m, rep.sampler, rep.method) {
+  df <- tibble::tibble(rep.sampler = rep.sampler,
+                       rep.method = rep.method,
+                       K = dat$K,
+                       lambda = m$lambda,
+                       B = as.numeric(m$B[,1]),
+                       index = 1:ncol(dat$Y))
   print.data.frame(df[1,])
   df
 }
 
 ## plot
 plot_res <- function(df.res) {
-  ggplot(df.res, aes(x = B, fill = as.factor(i))) +
+  ggplot(df.res, aes(x = B, fill = as.factor(rep.sampler))) +
     geom_histogram(position = "dodge") +
     facet_grid(K ~ lambda)
 }
@@ -71,20 +73,22 @@ test_that("expr", {
 
   ## extractor
   dat <- ExpRmouline(samplers[[1]])
-  dat$i <- 1
+  i <- 1
+  j <- 1
   m.res <- ExpRmouline(methods[[1]], dat)
-  df <- extract_B(dat, m.res)
+  df <- extract_B(dat, m.res, i, j)
 
   ## expr
-  expr <- ExpR(rep.nb = 2,
+  expr <- ExpR(rep.nb.sampler = 2,
                samplers = samplers,
+               rep.nb.method = 1,
                methods = methods,
                preprocessors = NULL,
                extractor = extract_B)
 
 
   expr <- ExpRmouline(expr)
-  expect_equal(dim(expr$df.res), c(100 * 2 * 3 * 2, 5))
+  expect_equal(dim(expr$df.res), c(100 * 2 * 3 * 2, 6))
 
   ## plot
   plot_res(expr$df.res)

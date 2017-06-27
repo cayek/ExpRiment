@@ -19,8 +19,9 @@ NULL
 ##' @return an ExpR object
 ##' @author cayek
 ##' @export
-ExpR <- function(rep.nb, samplers, preprocessors, methods, extractor) {
-  res <- list(rep.nb = rep.nb,
+ExpR <- function(rep.nb.sampler, samplers, preprocessors, rep.nb.method, methods, extractor) {
+  res <- list(rep.nb.sampler = rep.nb.sampler,
+              rep.nb.method = rep.nb.method,
               samplers = samplers,
               preprocessors = preprocessors,
               methods = methods,
@@ -44,13 +45,13 @@ ExpRmouline.ExpR <- function(expr) {
     foreach(sampler = expr$samplers, .combine = 'c') %dopar%
     {
       aux <- list()
-      for (i in 1:(expr$rep.nb)) {
+      for (i in 1:(expr$rep.nb.sampler)) {
         dat <- ExpRmouline(sampler)
-        aux[[i]] <- dat
+        aux[[i]] <- list(dat = dat, i = i)
       }
       return(aux)
     }
-  
+
   ## preprocess
 
   ## main loop
@@ -59,10 +60,14 @@ ExpRmouline.ExpR <- function(expr) {
     foreach(m = methods, .combine = 'rbind') %:%
     foreach(d = dats, .combine = 'rbind') %dopar%
     {
-      m <- ExpRmouline(m, d)
-      return(expr$extractor(d, m))
+      res <- data.frame()
+      for (j in 1:(expr$rep.nb.method)) {
+        m <- ExpRmouline(m, d$dat)
+        res <- rbind(res,
+                     expr$extractor(d$dat, m, rep.sampler = d$i, rep.method = j))
+      }
+      return(res)
     }
-
   ## return
   expr
 }
