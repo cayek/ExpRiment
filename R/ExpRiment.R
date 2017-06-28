@@ -19,12 +19,14 @@ NULL
 ##' @return an ExpR object
 ##' @author cayek
 ##' @export
-ExpR <- function(rep.nb.sampler, samplers, preprocessors, rep.nb.method, methods, extractor) {
+ExpR <- function(rep.nb.sampler, samplers, preprocessors, rep.nb.method, methods, extractor,
+                 sampler.env = NULL) {
   res <- list(rep.nb.sampler = rep.nb.sampler,
               rep.nb.method = rep.nb.method,
               samplers = samplers,
               preprocessors = preprocessors,
               methods = methods,
+              sampler.env = sampler.env,
               extractor = extractor)
   class(res) <- c("ExpR")
   res
@@ -51,6 +53,11 @@ ExpRmouline.ExpR <- function(expr) {
       }
       return(aux)
     }
+
+  ## free memory
+  if (!is.null(sampler.env)) {
+    sampler.env$empty(sampler.env)
+  }
 
   ## preprocess
 
