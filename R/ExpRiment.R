@@ -55,7 +55,7 @@ ExpRmouline.ExpR <- function(expr) {
     }
 
   ## free memory
-  if (!is.null(sampler.env)) {
+  if (!is.null(expr$sampler.env)) {
     sampler.env$empty(sampler.env)
   }
 
