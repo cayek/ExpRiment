@@ -1,6 +1,7 @@
 .PHONY: ExpRiment_install ExpRiment_test ExpRiment_document ExpRiment_check krakenator_install_ExpRiment
 
 krakenator_install_ExpRiment:
+	git status
 	ssh -t cayek@krakenator.imag.fr "cd ~/Projects/Thesis/ExpRiment/; git pull; make ExpRiment_install"
 
 
