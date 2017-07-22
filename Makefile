@@ -1,8 +1,13 @@
 .PHONY: ExpRiment_install ExpRiment_test ExpRiment_document ExpRiment_check krakenator_install_ExpRiment
 
-krakenator_install_ExpRiment:
+
+krakenator_deploy:
 	git status
-	ssh -t cayek@krakenator.imag.fr "cd ~/Projects/Thesis/ExpRiment/; git pull; make ExpRiment_install"
+	git commit --allow-empty -am "deploy on krakenator"
+	git push krakenator master
+
+krakenator_push_hook:
+	scp ./hooks/post-receive.sh cayek@krakenator:/home/cayek/Gits/2017/ExpRiment.git/hooks/post-receive
 
 
 ## Rpackage
