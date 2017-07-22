@@ -1,9 +1,10 @@
 .PHONY: ExpRiment_install ExpRiment_test ExpRiment_document ExpRiment_check krakenator_install_ExpRiment
 
+## krak
 
 krakenator_deploy:
 	git status
-	# git commit --allow-empty -am "deploy on krakenator"
+## git commit --allow-empty -am "deploy on krakenator"
 	git push krakenator master
 
 krakenator_push_hook:
