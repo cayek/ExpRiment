@@ -10,6 +10,7 @@ do
         echo "Master ref received.  Deploying master branch to production..."
         git --work-tree=$dest --git-dir=/home/cayek/Gits/2017/ExpRiment.git checkout -f
 	      cd $dest
+	      make ExpRiment_install
         source activate MaThese
 	      make ExpRiment_install
     else
